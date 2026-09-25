@@ -9,13 +9,14 @@ messages = [SystemMessage(content="Give one line answer")]
 
 while True:
     prompt = input("Enter prompt [q to quit, c to create new chat] :")
-    if prompt.strip().lower() == 'q':
+    if prompt.lower() == 'q':
         break
     # You can create HumanMessage or a dict with role user
     # messages.append( {"role" : "user", "content" : prompt})
     messages.append(HumanMessage(content=prompt))
     response = model.invoke(messages)
     print(response.content)
+    print('-' * 50)
     print(f'Total Tokens : {response.usage_metadata["total_tokens"]}')
    
     

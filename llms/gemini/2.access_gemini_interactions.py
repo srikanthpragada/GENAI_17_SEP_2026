@@ -1,15 +1,16 @@
 # Create key using https://aistudio.google.com/apikey
 # Set environment variable GOOGLE_API_KEY to Gemini API key
 
-# Using GenerateContent API
+# Using google Interactions API
 
 from google import genai
 
 client = genai.Client()
 
-response = client.models.generate_content(
+response = client.interactions.create(
     model="gemini-2.5-flash",
-    contents="What is the capital of Spain?"
+    input="What is the capital of Spain?"
 )
 
-print(response.text)
+#print(response)
+print(response.output_text)
