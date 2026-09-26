@@ -11,6 +11,12 @@ while True:
     prompt = input("Enter prompt [q to quit, c to create new chat] :")
     if prompt.lower() == 'q':
         break
+
+    if prompt.lower() == 'c':
+        del  messages[1:]   # delete all messages except first one
+        print('Starting a new conversation...')
+        continue 
+
     # You can create HumanMessage or a dict with role user
     # messages.append( {"role" : "user", "content" : prompt})
     messages.append(HumanMessage(content=prompt))
