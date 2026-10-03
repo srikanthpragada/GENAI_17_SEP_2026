@@ -5,7 +5,7 @@ from langchain_huggingface import (
     ChatHuggingFace,
 )
 
-llm = HuggingFaceEndpoint(repo_id="openai/gpt-oss-120b")
+llm = HuggingFaceEndpoint(model="openai/gpt-oss-120b")
 
 chat = ChatHuggingFace(llm=llm)
 
