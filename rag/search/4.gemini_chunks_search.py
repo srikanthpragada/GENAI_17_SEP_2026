@@ -1,10 +1,11 @@
+# Run it from command prompt to print special chars 
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import FAISS
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_chroma import Chroma
 
 loader = PyPDFLoader("../docs/courses_offered.pdf", mode='page')
 docs = loader.load()
@@ -18,12 +19,11 @@ splitter = RecursiveCharacterTextSplitter(
 chunks = splitter.split_documents(docs)
 print("No. of chunks :", len(chunks))
 
-embeddings_model = HuggingFaceEmbeddings(
-    model_name='sentence-transformers/all-MiniLM-L6-v2')
+embeddings_model = GoogleGenerativeAIEmbeddings(
+    model="models/gemini-embedding-001")
 
-db = FAISS.from_documents(chunks, embeddings_model)
-
-retrieved_results = db.similarity_search("What is course fee for Python", k = 2)
+vectorstore = Chroma.from_documents(chunks, embeddings_model)
+retrieved_results = vectorstore.similarity_search("RAG", k = 2)
 
 for result in retrieved_results:
     print(result.page_content)

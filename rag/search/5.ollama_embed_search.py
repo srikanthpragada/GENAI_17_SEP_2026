@@ -1,8 +1,5 @@
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
-
+from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings
-from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 
 # 1. Initialize OllamaEmbeddings
@@ -17,8 +14,8 @@ documents = [
     Document(page_content="Real Madrid won UEFA Champions League 13 times.")
 ]
 
-# 3. Create FAISS index from documents
-vectorstore = FAISS.from_documents(documents, embeddings_model)
+# 3. Create embeddings from documents
+vectorstore = Chroma.from_documents(documents, embeddings_model)
 
 # 4. Perform a similarity search
 query = "Did real madrid win champions league?"

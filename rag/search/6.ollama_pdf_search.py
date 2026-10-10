@@ -1,7 +1,4 @@
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
-
-from langchain_community.vectorstores import FAISS  
+from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings   
 from langchain_community.document_loaders import PyPDFLoader
 
@@ -10,7 +7,7 @@ docs = loader.load()
 print("Loaded documents", len(docs))
  
 embeddings_model  =  OllamaEmbeddings(model="nomic-embed-text:latest")
-db = FAISS.from_documents(docs,embeddings_model)
+db = Chroma.from_documents(docs,embeddings_model)
                
 
 retrieved_results = db.similarity_search("Python", k = 3)

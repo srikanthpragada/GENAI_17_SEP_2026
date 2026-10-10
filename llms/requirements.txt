@@ -14,12 +14,12 @@ faiss-cpu
 langchain-ollama 
 langchain-google-genai
 langchain-openai
+langchain-chroma
 streamlit
 pypdf
 transformers
 sentence-transformers
 sentencepiece
-openai
-google-genai
+
 
 
