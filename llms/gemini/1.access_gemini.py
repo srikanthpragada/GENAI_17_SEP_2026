@@ -12,4 +12,4 @@ response = client.models.generate_content(
     contents="What is the capital of Spain?"
 )
 
-print(response.text)
+print(response)

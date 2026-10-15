@@ -1,4 +1,4 @@
-## Set environment variable - HUGGINGFACE_HUB_TOKEN - to access token 
+## Set environment variable - HF_TOKEN - to access token 
 
 from huggingface_hub import InferenceClient
 
