@@ -6,7 +6,7 @@ from langchain.agents import create_agent
 from langchain.chat_models import init_chat_model
 import asyncio
 
-clients = MultiServerMCPClient(
+servers = MultiServerMCPClient(
     {"Math Server": {
         "url": "http://localhost:9999/mcp",
         "transport": "streamable_http"},
@@ -18,7 +18,7 @@ clients = MultiServerMCPClient(
 
 
 async def process():
-    tools = await clients.get_tools()
+    tools = await servers.get_tools()
     model = init_chat_model("gemini-2.5-flash", model_provider="google-genai")
     agent = create_agent(model, tools)
     
